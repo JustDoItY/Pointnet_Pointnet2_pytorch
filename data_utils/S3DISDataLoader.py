@@ -3,7 +3,13 @@ import numpy as np
 
 from tqdm import tqdm
 from torch.utils.data import Dataset
+def pathJoin(*args):
+    path = ''
 
+    for sub in args:
+        sub = str(sub).replace('\\', '/')
+        path += '/' + sub
+    return path[1:]
 
 class S3DISDataset(Dataset):
     def __init__(self, split='train', data_root='trainval_fullarea', num_point=4096, test_area=5, block_size=1.0, sample_rate=1.0, transform=None):
@@ -24,7 +30,7 @@ class S3DISDataset(Dataset):
         labelweights = np.zeros(13)
 
         for room_name in tqdm(rooms_split, total=len(rooms_split)):
-            room_path = os.path.join(data_root, room_name)
+            room_path = pathJoin(data_root, room_name)
             room_data = np.load(room_path)  # xyzrgbl, N*7
             points, labels = room_data[:, 0:6], room_data[:, 6]  # xyzrgb, N*6; l, N
             tmp, _ = np.histogram(labels, range(14))

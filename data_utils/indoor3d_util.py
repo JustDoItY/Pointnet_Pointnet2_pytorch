@@ -2,13 +2,20 @@ import numpy as np
 import glob
 import os
 import sys
+def pathJoin(*args):
+    path = ''
+
+    for sub in args:
+        sub = str(sub).replace('\\', '/')
+        path += '/' + sub
+    return path[1:]
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 sys.path.append(BASE_DIR)
 
-DATA_PATH = os.path.join(ROOT_DIR, 'data','s3dis', 'Stanford3dDataset_v1.2_Aligned_Version')
-g_classes = [x.rstrip() for x in open(os.path.join(BASE_DIR, 'meta/class_names.txt'))]
+DATA_PATH = pathJoin(ROOT_DIR, 'data','s3dis', 'Stanford3dDataset_v1.2_Aligned_Version')
+g_classes = [x.rstrip() for x in open(pathJoin(BASE_DIR, 'meta/class_names.txt'))]
 g_class2label = {cls: i for i,cls in enumerate(g_classes)}
 g_class2color = {'ceiling':	[0,255,0],
                  'floor':	[0,0,255],
@@ -45,7 +52,7 @@ def collect_point_label(anno_path, out_filename, file_format='txt'):
         the points are shifted before save, the most negative point is now at origin.
     """
     points_list = []
-    for f in glob.glob(os.path.join(anno_path, '*.txt')):
+    for f in glob.glob(pathJoin(anno_path, '*.txt')):
         cls = os.path.basename(f).split('_')[0]
         print(f)
         if cls not in g_classes: # note: in some room there is 'staris' class..
@@ -364,7 +371,7 @@ def collect_bounding_box(anno_path, out_filename):
     """
     bbox_label_list = []
 
-    for f in glob.glob(os.path.join(anno_path, '*.txt')):
+    for f in glob.glob(pathJoin(anno_path, '*.txt')):
         cls = os.path.basename(f).split('_')[0]
         if cls not in g_classes: # note: in some room there is 'staris' class..
             cls = 'clutter'
@@ -555,7 +562,7 @@ def collect_point_bounding_box(anno_path, out_filename, file_format):
     """
     point_bbox_list = []
 
-    for f in glob.glob(os.path.join(anno_path, '*.txt')):
+    for f in glob.glob(pathJoin(anno_path, '*.txt')):
         cls = os.path.basename(f).split('_')[0]
         if cls not in g_classes: # note: in some room there is 'staris' class..
             cls = 'clutter'

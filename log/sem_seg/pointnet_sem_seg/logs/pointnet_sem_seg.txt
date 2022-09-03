@@ -3570,3 +3570,12 @@ class clutter        weight: 0.012, IoU: 0.340
 2021-03-22 11:08:30,699 - Model - INFO - Eval mean loss: 1.252922
 2021-03-22 11:08:30,699 - Model - INFO - Eval accuracy: 0.778168
 2021-03-22 11:08:30,699 - Model - INFO - Best mIoU: 0.431862
+2022-09-01 14:31:58,099 - Model - INFO - PARAMETER ...
+2022-09-01 14:31:58,099 - Model - INFO - Namespace(batch_size=10, decay_rate=0.0001, epoch=20, gpu='0', learning_rate=0.001, log_dir='pointnet_sem_seg', lr_decay=0.7, model='pointnet_sem_seg', npoint=4096, optimizer='Adam', step_size=10, test_area=6)
+2022-09-01 14:32:41,055 - Model - INFO - The number of training data is: 56716
+2022-09-01 14:32:41,055 - Model - INFO - The number of test data is: 10096
+2022-09-01 14:32:42,817 - Model - INFO - Use pretrain model
+2022-09-01 14:36:17,109 - Model - INFO - PARAMETER ...
+2022-09-01 14:36:17,110 - Model - INFO - Namespace(batch_size=10, decay_rate=0.0001, epoch=20, gpu='0', learning_rate=0.001, log_dir='pointnet_sem_seg', lr_decay=0.7, model='pointnet_sem_seg', npoint=4096, optimizer='Adam', step_size=10, test_area=6)
+2022-09-01 14:36:52,534 - Model - INFO - The number of training data is: 56716
+2022-09-01 14:36:52,534 - Model - INFO - The number of test data is: 10096
